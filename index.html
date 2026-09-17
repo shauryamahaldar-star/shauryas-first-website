@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shaurya's Supercharged Editorial Portfolio - 10-year-old athlete, swimmer, runner, triathlete, gamer, and 5th-grade student living in Brunei.">
+  <meta name="author" content="Shaurya">
+  <title>Shaurya | Athlete, Triathlete &amp; Cyber Portfolio 🚀</title>
+
+  <!-- Google Fonts: Syne (Popping Editorial Display), Outfit, Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Ambient Particle Canvas Background -->
+  <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+
+  <!-- Cyber Cursor Follower -->
+  <div class="cyber-cursor" id="cyber-cursor"></div>
+  <div class="cyber-cursor-dot" id="cyber-cursor-dot"></div>
+
+  <!-- ==========================================================================
+       Header & Navigation
+       ========================================================================== -->
+  <header class="header" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="logo-link">
+        <div class="logo-badge">S</div>
+        <span class="brand-text">Shaurya<span class="cyan-dot">.</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#lookbook" class="nav-link">Lookbook</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#athletics" class="nav-link">Sports</a></li>
+          <li><a href="#trophy-vault" class="nav-link">Medals</a></li>
+          <li><a href="#swim-tech" class="nav-link">Dive Tech</a></li>
+          <li><a href="#arcade-game" class="nav-link highlight-link"><i class="fa-solid fa-gamepad"></i> Arcade</a></li>
+          <li><a href="#race-sim" class="nav-link">Race Sim</a></li>
+          <li><a href="#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="#cheer" class="nav-link">Say Hi</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Sound FX Toggle -->
+        <button class="nav-btn-icon" id="sound-toggle" title="Toggle Sound FX (Web Audio)" aria-label="Toggle Sound Effects">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <!-- Quests HUD Button -->
+        <button class="nav-btn-icon quest-hud-btn" id="quest-hud-btn" title="Shaurya Explorer Quests" aria-label="View Quests">
+          <i class="fa-solid fa-trophy"></i>
+          <span class="quest-count-badge" id="nav-quest-count">0/5</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="nav-btn-icon" id="theme-toggle" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         Hero Section
+         ========================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-pill">
+            <span class="live-pulse-dot"></span>
+            <i class="fa-solid fa-bolt"></i> 5th Grade Athlete &amp; Gamer in Brunei 🇧🇳
+          </div>
+          
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text glow-text">Shaurya</span>!
+          </h1>
+
+          <!-- Dynamic Typing Line -->
+          <div class="typing-container">
+            <span class="typing-prefix">I am a </span>
+            <span class="dynamic-typing-text" id="dynamic-typing-text">Triathlon &amp; Aquathon Champion</span>
+            <span class="typing-cursor">|</span>
+          </div>
+
+          <p class="hero-subtitle">
+            I am 10 years old and living in beautiful Brunei. I love sprinting at top speed, executing precision diving off the starting block, smashing video game high scores, and eating delicious fresh sushi!
+          </p>
+
+          <!-- Hero Action Tags -->
+          <div class="hero-tags">
+            <span class="tag-badge"><i class="fa-solid fa-person-swimming" style="color: #00f0ff;"></i> Competitive Swimmer</span>
+            <span class="tag-badge"><i class="fa-solid fa-person-running" style="color: #10b981;"></i> Track Sprinter</span>
+            <span class="tag-badge"><i class="fa-solid fa-person-biking" style="color: #f59e0b;"></i> Triathlete</span>
+            <span class="tag-badge"><i class="fa-solid fa-gamepad" style="color: #a855f7;"></i> Reflex Gamer</span>
+            <span class="tag-badge"><i class="fa-solid fa-utensils" style="color: #ec4899;"></i> Sushi Lover</span>
+          </div>
+
+          <!-- Hero CTAs -->
+          <div class="hero-cta-group">
+            <a href="#lookbook" class="btn btn-primary cyber-glow-btn">
+              <i class="fa-solid fa-compass"></i> Explore Lookbook
+            </a>
+            <a href="#arcade-game" class="btn btn-outline">
+              <i class="fa-solid fa-gamepad"></i> Play Arcade Game
+            </a>
+            <a href="#trophy-vault" class="btn btn-outline">
+              <i class="fa-solid fa-medal"></i> 3D Trophy Vault
+            </a>
+          </div>
+
+          <!-- Real-Time Shaurya Status HUD -->
+          <div class="shaurya-status-hud">
+            <div class="status-hud-item">
+              <span class="hud-label">CURRENT MODE</span>
+              <span class="hud-val cyan"><i class="fa-solid fa-fire"></i> BEAST MODE</span>
+            </div>
+            <div class="status-hud-divider"></div>
+            <div class="status-hud-item">
+              <span class="hud-label">ENERGY LEVEL</span>
+              <span class="hud-val green"><i class="fa-solid fa-bolt"></i> 100% TURBO</span>
+            </div>
+            <div class="status-hud-divider"></div>
+            <div class="status-hud-item">
+              <span class="hud-label">NEXT GOAL</span>
+              <span class="hud-val purple"><i class="fa-solid fa-stopwatch"></i> SUB-30s 50m FREE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero 3D Tilt Visual Card featuring Enhanced Determination Artwork -->
+        <div class="hero-visual">
+          <div class="profile-card-wrapper" id="hero-tilt-card">
+            <div class="glow-circle"></div>
+            <div class="glow-circle secondary"></div>
+            
+            <div class="floating-stat-pill top-left floating-anim-1">
+              <div class="stat-icon gold"><i class="fa-solid fa-trophy"></i></div>
+              <div>
+                <strong>3 Triathlons</strong>
+                <span>Competitor &amp; Finisher</span>
+              </div>
+            </div>
+
+            <div class="floating-stat-pill bottom-right floating-anim-2">
+              <div class="stat-icon cyan"><i class="fa-solid fa-person-swimming"></i></div>
+              <div>
+                <strong>Competitive Swimming</strong>
+                <span>Pool &amp; Open Water</span>
+              </div>
+            </div>
+
+            <!-- Main Glass Card with 3D Specular Light Glare -->
+            <div class="profile-glass-card">
+              <div class="card-glare-overlay" id="card-glare"></div>
+              
+              <div class="profile-img-container clickable-gallery-item" data-full-src="Gemini-created-photo/Gemini_Generated_Image_44sznr44sznr44sz.jpg" data-caption="Shaurya's Determination - High-speed neon track sprint artwork">
+                <img src="Gemini-created-photo/Gemini_Generated_Image_44sznr44sznr44sz.jpg" alt="Shaurya Determination Track Artwork" class="profile-img">
+                <div class="profile-badge-overlay">
+                  <i class="fa-solid fa-bolt"></i> Determination ⚡
+                </div>
+                <div class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Click to Zoom</div>
+              </div>
+
+              <div class="profile-meta">
+                <div>
+                  <h2 class="profile-name">Shaurya</h2>
+                  <p class="profile-location"><i class="fa-solid fa-location-dot" style="color: var(--accent-cyan);"></i> Brunei Darussalam</p>
+                </div>
+                <div class="profile-age-pill">
+                  <span class="age-badge">Age 10</span>
+                  <span class="class-badge">Grade 5</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         EDITORIAL LOOKBOOK PANELS (Inspired by the Reference UI Design)
+         ========================================================================== -->
+    <section class="section lookbook-section" id="lookbook">
+      <div class="container-wide">
+        <div class="section-header">
+          <span class="section-tag">Cinematic Visual Manifesto</span>
+          <h2 class="section-title">The Athletic Aesthetic Lookbook</h2>
+          <p class="section-subtitle">
+            An editorial perspective on speed, aquatic velocity, and the disciplined focus of training.
+          </p>
+        </div>
+
+        <div class="lookbook-container">
+
+          <!-- Panel 01: TONE / DETERMINATION -->
+          <div class="editorial-card panel-tone clickable-gallery-item" data-full-src="Gemini-created-photo/Gemini_Generated_Image_44sznr44sznr44sz.jpg" data-caption="Panel 01: Tone &amp; Determination - Sprinting with neon energy trails">
+            <div class="editorial-card-bg-overlay"></div>
+            
+            <div class="editorial-card-header">
+              <span class="editorial-brand-mark">SHAURYA // ATHLETE PORTFOLIO</span>
+              <span class="editorial-index-num">01 // 08</span>
+            </div>
+
+            <div class="editorial-card-content">
+              <div class="editorial-card-body">
+                <h3 class="editorial-arc-title">
+                  <span class="arc-initial-wrap">T</span>ONE
+                </h3>
+                <p class="editorial-body-p">
+                  Tonally this is a contemplative but relentless athletic journey. Combining explosive physical stamina with lightning reflexes, every training session establishes a powerful rhythm of dedication. From the track sprint starting blocks to the triathlon finish line, determination defines every stride.
+                </p>
+              </div>
+            </div>
+
+            <div class="editorial-card-footer">
+              <div class="editorial-meta-group">
+                <span class="editorial-meta-item"><strong>DISCIPLINE:</strong> Track Sprint &amp; Triathlon</span>
+                <span class="editorial-meta-item"><strong>MINDSET:</strong> 100% Unstoppable Focus</span>
+                <span class="editorial-meta-item"><strong>LOCATION:</strong> Brunei Darussalam</span>
+              </div>
+              <span class="btn btn-sm btn-outline clickable-gallery-item" data-full-src="Gemini-created-photo/Gemini_Generated_Image_44sznr44sznr44sz.jpg" data-caption="Shaurya's Determination Neon Sprint Artwork">
+                <i class="fa-solid fa-expand"></i> View Full Art
+              </span>
+            </div>
+          </div>
+
+          <!-- Panel 02: SOUND & VELOCITY / AQUATIC FLOW -->
+          <div class="editorial-card panel-sound clickable-gallery-item" data-full-src="Gemini-created-photo/Gemini_Generated_Image_ys92p0ys92p0ys92.jpg" data-caption="Panel 02: Sound &amp; Velocity - Hydrodynamic underwater swimming with sunbeams">
+            <div class="editorial-card-bg-overlay"></div>
+
+            <div class="editorial-card-header">
+              <span class="editorial-brand-mark">SHAURYA // AQUATIC VELOCITY</span>
+              <span class="editorial-index-num">02 // 23</span>
+            </div>
+
+            <div class="editorial-card-content">
+              <div class="editorial-card-body">
+                <h3 class="editorial-arc-title">
+                  <span class="arc-initial-wrap">S</span>OUND &amp; FLOW
+                </h3>
+                <p class="editorial-body-p">
+                  For a visceral and naturalistic aquatic sensation, the sound of water slicing through streamline body roll is pure music. Gliding below the sunlit surface in pristine waters, each 6-beat flutter kick propels forward with effortless hydrodynamic poise and calm focus.
+                </p>
+              </div>
+            </div>
+
+            <div class="editorial-card-footer">
+              <div class="editorial-meta-group">
+                <span class="editorial-meta-item"><strong>STROKE:</strong> Freestyle &amp; Streamline Dive</span>
+                <span class="editorial-meta-item"><strong>CADENCE:</strong> 44 SPM Rhythm</span>
+                <span class="editorial-meta-item"><strong>ELEMENT:</strong> Pure Water</span>
+              </div>
+              <span class="btn btn-sm btn-outline clickable-gallery-item" data-full-src="Gemini-created-photo/Gemini_Generated_Image_ys92p0ys92p0ys92.jpg" data-caption="Shaurya Underwater Swimming Artwork">
+                <i class="fa-solid fa-expand"></i> View Full Art
+              </span>
+            </div>
+          </div>
+
+          <!-- Panel 03: LOCATION / BRUNEI DARUSSALAM -->
+          <div class="editorial-card panel-location clickable-gallery-item" data-full-src="inspiration-image/image.png" data-caption="Panel 03: Location &amp; Moodboard - Design inspiration and tropical Brunei coastline">
+            <div class="editorial-card-bg-overlay"></div>
+
+            <div class="editorial-card-header">
+              <span class="editorial-brand-mark">SHAURYA // GEOGRAPHIC ROOTS</span>
+              <span class="editorial-index-num">03 // 22</span>
+            </div>
+
+            <div class="editorial-card-content">
+              <div class="editorial-card-body">
+                <h3 class="editorial-arc-title">
+                  <span class="arc-initial-wrap">L</span>OCATION
+                </h3>
+                <p class="editorial-body-p">
+                  From the sunny tropical coastlines and rainforest-fringed tracks of Brunei Darussalam to international swimming arenas, Shaurya embraces the environment. An oasis of focus where man, water, and track harmonize into pure athletic achievement.
+                </p>
+              </div>
+            </div>
+
+            <div class="editorial-card-footer">
+              <div class="editorial-meta-group">
+                <span class="editorial-meta-item"><strong>BASE:</strong> Brunei Darussalam 🇧🇳</span>
+                <span class="editorial-meta-item"><strong>ORIGIN:</strong> Born in Oman 🇴🇲</span>
+                <span class="editorial-meta-item"><strong>INSPIRATION:</strong> Ocean &amp; Earth</span>
+              </div>
+              <span class="btn btn-sm btn-outline clickable-gallery-item" data-full-src="inspiration-image/image.png" data-caption="Editorial Inspiration UI &amp; Moodboard">
+                <i class="fa-solid fa-expand"></i> View Inspiration
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         About & Story Section (with Interactive Sushi Feeder)
+         ========================================================================== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Get To Know Me</span>
+          <h2 class="section-title">My Story &amp; Favorites</h2>
+          <p class="section-subtitle">Born in Oman, thriving in Brunei, and conquering tracks, swimming pools, and video game worlds!</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Journey Card -->
+          <div class="about-card">
+            <div class="card-glow-border"></div>
+            <div class="about-card-icon">
+              <i class="fa-solid fa-plane-departure"></i>
+            </div>
+            <h3 class="about-card-title">My Journey</h3>
+            <p class="about-card-desc">
+              I was born in <strong>Oman 🇴🇲</strong> and moved to the lush tropical beauty of <strong>Brunei 🇧🇳</strong> when I was 4 years old. Today I am in <strong>Primary 5th Grade</strong>, loving math, sports science, robotics, and training with friends!
+            </p>
+            <div class="about-meta-tags">
+              <span class="tag-badge-sm">🇴🇲 Born in Oman</span>
+              <span class="tag-badge-sm">🇧🇳 Raised in Brunei</span>
+              <span class="tag-badge-sm">🏫 Primary 5</span>
+            </div>
+          </div>
+
+          <!-- Family Card -->
+          <div class="about-card purple">
+            <div class="card-glow-border"></div>
+            <div class="about-card-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <h3 class="about-card-title">My Amazing Family</h3>
+            <p class="about-card-desc">
+              My family is my #1 cheer squad on every race day and every training morning:
+            </p>
+            <ul class="family-list">
+              <li class="family-item"><i class="fa-solid fa-user-astronaut" style="color: #00f0ff;"></i> <strong>Sam (6 yrs):</strong> My playful, energetic little brother!</li>
+              <li class="family-item"><i class="fa-solid fa-heart" style="color: #ec4899;"></i> <strong>Moushmi:</strong> My loving mom who always believes in me!</li>
+              <li class="family-item"><i class="fa-solid fa-shield-halved" style="color: #f59e0b;"></i> <strong>Sahil:</strong> My inspiring dad and sports training partner!</li>
+            </ul>
+          </div>
+
+          <!-- Favorites Card with Interactive Sushi Feeder! -->
+          <div class="about-card amber" id="sushi-card">
+            <div class="card-glow-border"></div>
+            <div class="about-card-icon">
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <h3 class="about-card-title">My Favorites &amp; Sushi Feeder 🍣</h3>
+            <p class="about-card-desc">
+              <strong>Favorite Color:</strong> Cyan (#00f0ff) 🩵<br>
+              <strong>Favorite Food:</strong> Japanese Salmon Sushi 🍣<br>
+              <strong>Passions:</strong> Triathlons, swimming, sprint tracks &amp; high reflex gaming!
+            </p>
+
+            <!-- Interactive Sushi Clicker Widget -->
+            <div class="sushi-feeder-widget">
+              <div class="sushi-meter-header">
+                <span>🍣 Shaurya's Sushi Energy Meter</span>
+                <span id="sushi-count-text" class="sushi-highlight">0 Pieces</span>
+              </div>
+              <div class="sushi-meter-bar">
+                <div class="sushi-meter-fill" id="sushi-meter-fill" style="width: 0%;"></div>
+              </div>
+              <button type="button" class="btn btn-sm sushi-feed-btn" id="feed-sushi-btn">
+                <i class="fa-solid fa-utensils"></i> Feed Shaurya Sushi! 🍣
+              </button>
+              <span id="sushi-power-status" class="sushi-status-text">Click to feed and boost energy!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Athletics & Stats Section
+         ========================================================================== -->
+    <section class="section" id="athletics">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Sports Power</span>
+          <h2 class="section-title">Athletic Achievements</h2>
+          <p class="section-subtitle">Dedicated, fast, and always giving 100% in training and official championship races!</p>
+        </div>
+
+        <!-- Animated Stats Banner -->
+        <div class="stats-banner">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-icon-wrapper cyan"><i class="fa-solid fa-person-biking"></i></div>
+              <div class="stat-number-wrapper">
+                <span class="stat-counter" data-target="3">0</span>
+              </div>
+              <div class="stat-label">Triathlons</div>
+              <div class="stat-subtext">Swim, Bike &amp; Run Completed</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon-wrapper blue"><i class="fa-solid fa-water"></i></div>
+              <div class="stat-number-wrapper">
+                <span class="stat-counter" data-target="1">0</span>
+              </div>
+              <div class="stat-label">Aquathon</div>
+              <div class="stat-subtext">Swim &amp; Run Multi-Discipline</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon-wrapper emerald"><i class="fa-solid fa-person-walking"></i></div>
+              <div class="stat-number-wrapper">
+                <span class="stat-counter" data-target="7">0</span>
+              </div>
+              <div class="stat-label">Walkathons</div>
+              <div class="stat-subtext">Community &amp; Endurance Events</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon-wrapper cyan"><i class="fa-solid fa-person-swimming"></i></div>
+              <div class="stat-number-wrapper">
+                <span class="stat-counter" data-target="10">0</span>
+                <span class="stat-plus">+</span>
+              </div>
+              <div class="stat-label">Swimming</div>
+              <div class="stat-subtext">Pool Sprints &amp; Open Water Meets</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sports Feature Highlight Grid -->
+        <div class="sports-showcase-grid">
+          <!-- Swimming Highlight -->
+          <div class="sports-feature-card clickable-gallery-item" data-full-src="IMG-20260624-WA0026.jpg" data-caption="Shaurya performing a starting block dive in competitive swimming meet">
+            <div class="feature-img-box">
+              <img src="IMG-20260624-WA0026.jpg" alt="Shaurya Swimming Dive" loading="lazy">
+              <span class="feature-pill"><i class="fa-solid fa-person-swimming"></i> Swim Competition</span>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Starting Block Precision Dive</h3>
+              <p class="feature-desc">
+                Explosive reaction time off the buzzer with streamline entry. Swimming is one of my strongest disciplines in both pool sprints and open-water triathlons.
+              </p>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <a href="#swim-tech" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                  <i class="fa-solid fa-chart-line"></i> View Dive Mechanics
+                </a>
+                <a href="#race-sim" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                  <i class="fa-solid fa-flag-checkered"></i> Race Simulator
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Running Highlight -->
+          <div class="sports-feature-card clickable-gallery-item" data-full-src="IMG-20260624-WA0023.jpg" data-caption="Shaurya sprinting toward the finish line on school sports day">
+            <div class="feature-img-box">
+              <img src="IMG-20260624-WA0023.jpg" alt="Shaurya Track Sprint" loading="lazy">
+              <span class="feature-pill"><i class="fa-solid fa-person-running"></i> Track &amp; Field Sprint</span>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">School Track &amp; Sprint Champion</h3>
+              <p class="feature-desc">
+                Leading the pack during school sports day! Running gives me immense joy, and I love testing my stamina across sprint races and distance walkathons.
+              </p>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <span class="btn btn-outline clickable-gallery-item" data-full-src="IMG-20260624-WA0023.jpg" data-caption="Shaurya track sprint race day photo" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> View Full Photo
+                </span>
+                <a href="#arcade-game" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                  <i class="fa-solid fa-gamepad"></i> Play Sprint Game
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3D Trophy Room & Medal Vault
+         ========================================================================== -->
+    <section class="section trophy-vault-section" id="trophy-vault">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Display Case</span>
+          <h2 class="section-title">3D Trophy Room &amp; Medal Vault 🏆</h2>
+          <p class="section-subtitle">
+            Explore Shaurya's official podium medals and athletic trophies! Hover to tilt in 3D, and click any medal to flip and reveal its race story.
+          </p>
+        </div>
+
+        <!-- Trophy Vault Filter Tabs -->
+        <div class="trophy-filters">
+          <button class="trophy-filter-btn active" data-filter="all"><i class="fa-solid fa-layer-group"></i> All Honors</button>
+          <button class="trophy-filter-btn" data-filter="triathlon"><i class="fa-solid fa-person-biking"></i> Triathlons</button>
+          <button class="trophy-filter-btn" data-filter="swimming"><i class="fa-solid fa-person-swimming"></i> Swim &amp; Aquathon</button>
+          <button class="trophy-filter-btn" data-filter="track"><i class="fa-solid fa-person-running"></i> Track &amp; Walkathons</button>
+          <button class="trophy-filter-btn" data-filter="gaming"><i class="fa-solid fa-gamepad"></i> Gaming Trophies</button>
+        </div>
+
+        <!-- 3D Medals Showcase Grid -->
+        <div class="medals-grid" id="medals-grid">
+
+          <!-- Medal 1: Triathlon Gold Finisher -->
+          <div class="medal-card-wrapper" data-category="triathlon">
+            <div class="medal-3d-card" onclick="this.classList.toggle('flipped')">
+              <div class="medal-card-front gold-medal">
+                <div class="medal-ribbon cyan-ribbon"></div>
+                <div class="medal-emblem-circle gold-shine">
+                  <i class="fa-solid fa-trophy medal-icon"></i>
+                  <span class="medal-tier">GOLD FINISHER</span>
+                </div>
+                <h3 class="medal-name">Junior Triathlon Championship</h3>
+                <span class="medal-event-tag">🏊‍♂️ 0.2K Swim • 🚴‍♂️ 5K Bike • 🏃‍♂️ 1.5K Run</span>
+                <span class="medal-flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip for race lore</span>
+              </div>
+              <div class="medal-card-back">
+                <h4 class="back-title">Race Telemetry &amp; Lore</h4>
+                <p class="back-desc">
+                  Completed all 3 stages with rapid T1/T2 transitions! Strongest segment was the final 1.5km run sprint where Shaurya overtook 4 competitors.
+                </p>
+                <div class="back-stats">
+                  <div><strong>Discipline:</strong> Multisport</div>
+                  <div><strong>Location:</strong> Brunei Darussalam</div>
+                  <div><strong>Award:</strong> Official Finisher Medal</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Medal 2: Starting Block Swim Medal -->
+          <div class="medal-card-wrapper" data-category="swimming">
+            <div class="medal-3d-card" onclick="this.classList.toggle('flipped')">
+              <div class="medal-card-front cyan-medal">
+                <div class="medal-ribbon blue-ribbon"></div>
+                <div class="medal-emblem-circle cyan-shine">
+                  <i class="fa-solid fa-person-swimming medal-icon"></i>
+                  <span class="medal-tier">PODIUM MEDALIST</span>
+                </div>
+                <h3 class="medal-name">50m Freestyle Sprint</h3>
+                <span class="medal-event-tag">🏊‍♂️ Sub-0.7s Block Reaction Speed</span>
+                <span class="medal-flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip for race lore</span>
+              </div>
+              <div class="medal-card-back">
+                <h4 class="back-title">Stroke Dynamics</h4>
+                <p class="back-desc">
+                  Executed a 30-degree shallow dive with high-elbow pull technique and explosive 6-beat flutter kick propulsion.
+                </p>
+                <div class="back-stats">
+                  <div><strong>Discipline:</strong> 50m Free</div>
+                  <div><strong>Reaction:</strong> 0.68s Buzzer Launch</div>
+                  <div><strong>Award:</strong> School Swim Medal</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Medal 3: Track & Field Sprint Champion -->
+          <div class="medal-card-wrapper" data-category="track">
+            <div class="medal-3d-card" onclick="this.classList.toggle('flipped')">
+              <div class="medal-card-front emerald-medal">
+                <div class="medal-ribbon gold-ribbon"></div>
+                <div class="medal-emblem-circle emerald-shine">
+                  <i class="fa-solid fa-person-running medal-icon"></i>
+                  <span class="medal-tier">1ST PLACE MEDAL</span>
+                </div>
+                <h3 class="medal-name">Primary Track &amp; Field Sprint</h3>
+                <span class="medal-event-tag">🏃‍♂️ School Sports Day Gold</span>
+                <span class="medal-flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip for race lore</span>
+              </div>
+              <div class="medal-card-back">
+                <h4 class="back-title">Sprint Performance</h4>
+                <p class="back-desc">
+                  Led the entire sprint from lane 3 with top acceleration, winning 1st place and taking home the school honors medal!
+                </p>
+                <div class="back-stats">
+                  <div><strong>Discipline:</strong> 100m / Relay Sprint</div>
+                  <div><strong>Standing:</strong> 1st Place Champion</div>
+                  <div><strong>Award:</strong> Gold Medal</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Medal 4: 7x Walkathon Endurance Trophy -->
+          <div class="medal-card-wrapper" data-category="track">
+            <div class="medal-3d-card" onclick="this.classList.toggle('flipped')">
+              <div class="medal-card-front amber-medal">
+                <div class="medal-ribbon red-ribbon"></div>
+                <div class="medal-emblem-circle amber-shine">
+                  <i class="fa-solid fa-shoe-prints medal-icon"></i>
+                  <span class="medal-tier">7X ENDURANCE HERO</span>
+                </div>
+                <h3 class="medal-name">Walkathon Veteran Trophy</h3>
+                <span class="medal-event-tag">🚶‍♂️ 7 Community Marches Completed</span>
+                <span class="medal-flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip for race lore</span>
+              </div>
+              <div class="medal-card-back">
+                <h4 class="back-title">Endurance Record</h4>
+                <p class="back-desc">
+                  Participated in 7 official community walkathons across Brunei, developing relentless stamina and community spirit.
+                </p>
+                <div class="back-stats">
+                  <div><strong>Completed:</strong> 7 Walkathons</div>
+                  <div><strong>Total Distance:</strong> 25+ Kilometers</div>
+                  <div><strong>Award:</strong> Endurance Milestone</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Medal 5: Aquathon Dual-Stage Cup -->
+          <div class="medal-card-wrapper" data-category="swimming">
+            <div class="medal-3d-card" onclick="this.classList.toggle('flipped')">
+              <div class="medal-card-front blue-medal">
+                <div class="medal-ribbon cyan-ribbon"></div>
+                <div class="medal-emblem-circle blue-shine">
+                  <i class="fa-solid fa-water-ladder medal-icon"></i>
+                  <span class="medal-tier">AQUATHON FINISHER</span>
+                </div>
+                <h3 class="medal-name">Brunei Aquathon Challenge</h3>
+                <span class="medal-event-tag">🏊‍♂️ Open Swim + 🏃‍♂️ Road Sprint</span>
+                <span class="medal-flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip for race lore</span>
+              </div>
+              <div class="medal-card-back">
+                <h4 class="back-title">Aquathon Breakdown</h4>
+                <p class="back-desc">
+                  Seamlessly transitioned straight from the water into high-cadence running shoes with zero fatigue!
+                </p>
+                <div class="back-stats">
+                  <div><strong>Discipline:</strong> Swim &amp; Run</div>
+                  <div><strong>Event:</strong> Official Aquathon</div>
+                  <div><strong>Status:</strong> Medalist</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Medal 6: High Reflex Gaming Trophy -->
+          <div class="medal-card-wrapper" data-category="gaming">
+            <div class="medal-3d-card" onclick="this.classList.toggle('flipped')">
+              <div class="medal-card-front purple-medal">
+                <div class="medal-ribbon purple-ribbon"></div>
+                <div class="medal-emblem-circle purple-shine">
+                  <i class="fa-solid fa-gamepad medal-icon"></i>
+                  <span class="medal-tier">GAMING BOSS TROPHY</span>
+                </div>
+                <h3 class="medal-name">Rhythm &amp; Reflex Grandmaster</h3>
+                <span class="medal-event-tag">🎮 Level Boss Defeated &amp; S-Rank</span>
+                <span class="medal-flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip for game lore</span>
+              </div>
+              <div class="medal-card-back">
+                <h4 class="back-title">Gamer Achievements</h4>
+                <p class="back-desc">
+                  Lightning reflex speed and precision rhythm timing applied from competitive athletic sports directly to video games!
+                </p>
+                <div class="back-stats">
+                  <div><strong>Genre:</strong> Fast Reflex / Action</div>
+                  <div><strong>Skill:</strong> High Speed Hand-Eye Sync</div>
+                  <div><strong>Rank:</strong> S-Tier Gamer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Freestyle & The Perfect Dive Interactive Component
+         ========================================================================== -->
+    <section class="section swim-tech-section" id="swim-tech">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Aqua Dynamics &amp; Technique</span>
+          <h2 class="section-title">Freestyle &amp; The Perfect Dive</h2>
+          <p class="section-subtitle">
+            Explore the mechanics behind my competitive starting block dive and high-speed freestyle stroke. Click or hover the interactive hotspots to see form breakdown!
+          </p>
+        </div>
+
+        <div class="swim-tech-card">
+          <!-- Interactive Switcher Tabs -->
+          <div class="swim-tab-container">
+            <button type="button" class="swim-tab-btn active" data-target="#dive-panel">
+              <i class="fa-solid fa-bolt"></i> The Competitive Dive Breakdown
+            </button>
+            <button type="button" class="swim-tab-btn" data-target="#freestyle-panel">
+              <i class="fa-solid fa-water"></i> Freestyle Stroke Mechanics
+            </button>
+          </div>
+
+          <!-- Tab Panel 1: The Competitive Dive -->
+          <div class="swim-tab-panel active" id="dive-panel">
+            <div class="swim-showcase-grid">
+              <!-- Visual Card with Interactive Hotspots -->
+              <div class="dive-visual-card">
+                <div class="dive-img-container">
+                  <img src="IMG-20260624-WA0026.jpg" alt="Shaurya Starting Block Dive Form Analysis" loading="lazy">
+                  
+                  <!-- Hotspot 1: Fingertips & Streamline -->
+                  <div class="form-hotspot active" data-step="1" style="left: 32%; top: 76%;" title="Streamline Finger Lead">
+                    1
+                    <div class="hotspot-tooltip">🎯 1. Streamline Fingertip Lead</div>
+                  </div>
+
+                  <!-- Hotspot 2: Head & Shoulder Tuck -->
+                  <div class="form-hotspot" data-step="2" style="left: 42%; top: 72%;" title="Head Tucked in Arms">
+                    2
+                    <div class="hotspot-tooltip">🎯 2. Head Tucked in Streamline</div>
+                  </div>
+
+                  <!-- Hotspot 3: Hip & Core Elevation -->
+                  <div class="form-hotspot" data-step="3" style="left: 56%; top: 62%;" title="Horizontal Core Elevation">
+                    3
+                    <div class="hotspot-tooltip">🎯 3. Core &amp; Hip Elevation</div>
+                  </div>
+
+                  <!-- Hotspot 4: Leg Extension & Take-off -->
+                  <div class="form-hotspot" data-step="4" style="left: 81%; top: 52%;" title="Explosive Leg Drive">
+                    4
+                    <div class="hotspot-tooltip">🎯 4. Explosive Leg Extension</div>
+                  </div>
+                </div>
+
+                <div style="padding: 1rem 1.25rem; background: rgba(5,8,17,0.92); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass);">
+                  <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700;">
+                    <i class="fa-solid fa-hand-pointer"></i> Hover or tap hotspots on photo
+                  </span>
+                  <span class="tag-badge" style="font-size: 0.78rem;">Block #2 Launch</span>
+                </div>
+              </div>
+
+              <!-- Dive Step Breakdown List -->
+              <div class="tech-steps-list">
+                <!-- Step 1 -->
+                <div class="tech-step-item active" data-step="1">
+                  <div class="step-icon-circle"><i class="fa-solid fa-arrows-to-dot"></i></div>
+                  <div>
+                    <h3 class="tech-step-title">1. Streamline Fingertip Lead</h3>
+                    <p class="tech-step-desc">
+                      Hands locked one over the other, slicing into the water at a single entry point to minimize drag and preserve forward momentum.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="tech-step-item" data-step="2">
+                  <div class="step-icon-circle"><i class="fa-solid fa-shield-halved"></i></div>
+                  <div>
+                    <h3 class="tech-step-title">2. Chin Tuck &amp; Arm Lock</h3>
+                    <p class="tech-step-desc">
+                      Ears squeezed tightly between the biceps. This locks the upper body into a rigid aerodynamic cylinder in mid-air.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="tech-step-item" data-step="3">
+                  <div class="step-icon-circle"><i class="fa-solid fa-dumbbell"></i></div>
+                  <div>
+                    <h3 class="tech-step-title">3. Core &amp; Hip Alignment</h3>
+                    <p class="tech-step-desc">
+                      Hips elevated high above the water surface to generate an optimal shallow entry angle (~30°) directly into the racing lane.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="tech-step-item" data-step="4">
+                  <div class="step-icon-circle"><i class="fa-solid fa-bolt-lightning"></i></div>
+                  <div>
+                    <h3 class="tech-step-title">4. Explosive Take-Off Drive</h3>
+                    <p class="tech-step-desc">
+                      Instant reaction on the starter buzzer, driving off the wedge with maximum quadricep and calf extension for maximum flight distance.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dive Metrics -->
+            <div class="swim-metrics-grid">
+              <div class="swim-metric-card">
+                <div class="swim-metric-header">
+                  <span><i class="fa-solid fa-crosshairs" style="color: var(--accent-cyan);"></i> Entry Angle Accuracy</span>
+                  <span style="color: var(--accent-cyan);">98%</span>
+                </div>
+                <div class="metric-bar-track">
+                  <div class="metric-bar-fill" style="width: 98%;"></div>
+                </div>
+              </div>
+
+              <div class="swim-metric-card">
+                <div class="swim-metric-header">
+                  <span><i class="fa-solid fa-stopwatch" style="color: var(--accent-cyan);"></i> Block Reaction Speed</span>
+                  <span style="color: var(--accent-cyan);">0.68s (Elite Grade)</span>
+                </div>
+                <div class="metric-bar-track">
+                  <div class="metric-bar-fill" style="width: 92%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Panel 2: Freestyle Stroke Mechanics -->
+          <div class="swim-tab-panel" id="freestyle-panel">
+            <div class="swim-showcase-grid">
+              <!-- Freestyle Technique Highlights -->
+              <div class="tech-steps-list">
+                <div class="tech-step-item active">
+                  <div class="step-icon-circle" style="background: rgba(14,165,233,0.2); color: var(--accent-blue);"><i class="fa-solid fa-hand-fist"></i></div>
+                  <div>
+                    <h3 class="tech-step-title">High-Elbow Catch &amp; Pull</h3>
+                    <p class="tech-step-desc">
+                      Keeping the elbow high engages the powerful lat muscles, anchoring the forearm in the water like an oar to propel forward with every stroke.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="tech-step-item">
+                  <div class="step-icon-circle" style="background: rgba(16,185,129,0.2); color: var(--accent-emerald);"><i class="fa-solid fa-lungs"></i></div>
+                  <div>
+                    <h3 class="tech-step-title">Bilateral Rhythmic Breathing</h3>
+                    <p class="tech-step-desc">
+                      Breathing alternately on stroke 3 keeps the stroke balanced and straight while keeping one goggle in the water's bow wave.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="tech-step-item">
+                  <div class="step-icon-circle" style="background: rgba(245,158,11,0.2); color: var(--accent-amber);"><i class="fa-solid fa-person-running"></i></div>
+                  <div>
+                    <h3 class="tech-step-title">6-Beat Flutter Kick Propulsion</h3>
+                    <p class="tech-step-desc">
+                      Six compact, rhythmic kicks per arm cycle originating from the hips with pointed toes maintain continuous body lift and speed.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="tech-step-item">
+                  <div class="step-icon-circle" style="background: rgba(168,85,247,0.2); color: var(--accent-purple);"><i class="fa-solid fa-arrows-rotate"></i></div>
+                  <div>
+                    <h3 class="tech-step-title">Hydrodynamic Body Roll</h3>
+                    <p class="tech-step-desc">
+                      Rotating the shoulders and hips together 45 degrees along the longitudinal axis cuts through wave resistance effortlessly.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Freestyle Card Summary -->
+              <div class="about-card" style="margin: 0; background: rgba(9,15,30,0.7); border-color: var(--accent-cyan);">
+                <div class="about-card-icon" style="background: rgba(0,240,255,0.2); color: var(--accent-cyan);">
+                  <i class="fa-solid fa-water"></i>
+                </div>
+                <h3 class="about-card-title">Triathlon Swim Mastery</h3>
+                <p class="about-card-desc">
+                  In both competitive pool races and the open-water swim stage of triathlons, smooth freestyle rhythm and pacing conserve energy for the bike and run transitions!
+                </p>
+                <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                  <div class="tag-badge" style="justify-content: space-between; width: 100%;">
+                    <span><i class="fa-solid fa-gauge-high" style="color: var(--accent-cyan);"></i> Target Stroke Rate:</span>
+                    <strong>42 - 46 SPM</strong>
+                  </div>
+                  <div class="tag-badge" style="justify-content: space-between; width: 100%;">
+                    <span><i class="fa-solid fa-heart-pulse" style="color: #ec4899;"></i> Pacing Endurance:</span>
+                    <strong>Triathlon Distance</strong>
+                  </div>
+                  <div class="tag-badge" style="justify-content: space-between; width: 100%;">
+                    <span><i class="fa-solid fa-fish" style="color: #10b981;"></i> Dolphin Breakout Kicks:</span>
+                    <strong>4 Kicks / Turn</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Freestyle Metrics -->
+            <div class="swim-metrics-grid">
+              <div class="swim-metric-card">
+                <div class="swim-metric-header">
+                  <span><i class="fa-solid fa-water" style="color: var(--accent-cyan);"></i> Hydrodynamic Stroke Efficiency</span>
+                  <span style="color: var(--accent-cyan);">96%</span>
+                </div>
+                <div class="metric-bar-track">
+                  <div class="metric-bar-fill" style="width: 96%;"></div>
+                </div>
+              </div>
+
+              <div class="swim-metric-card">
+                <div class="swim-metric-header">
+                  <span><i class="fa-solid fa-battery-full" style="color: var(--accent-cyan);"></i> Aerobic Triathlon Endurance</span>
+                  <span style="color: var(--accent-cyan);">95%</span>
+                </div>
+                <div class="metric-bar-track">
+                  <div class="metric-bar-fill" style="width: 95%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Shaurya's Cyber Sprint & Reflex Dash Arcade Game
+         ========================================================================== -->
+    <section class="section arcade-section" id="arcade-game">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag arcade-tag"><i class="fa-solid fa-gamepad"></i> Playable Web Mini-Game</span>
+          <h2 class="section-title">Shaurya's Cyber Sprint &amp; Reflex Dash 🎮</h2>
+          <p class="section-subtitle">
+            Take control of Shaurya! Jump over hurdles, dodge cyber obstacles, grab Sushi 🍣 (+50) &amp; Trophies 🏆 (+100), and trigger Cyan Turbo Boost ⚡ to set high scores!
+          </p>
+        </div>
+
+        <div class="arcade-cabinet-wrapper">
+          <!-- Game Header HUD -->
+          <div class="arcade-hud-bar">
+            <div class="hud-score-box">
+              <span class="hud-mini-label">SCORE</span>
+              <span class="hud-main-val" id="game-score-display">0000</span>
+            </div>
+            <div class="hud-score-box">
+              <span class="hud-mini-label">HIGH SCORE</span>
+              <span class="hud-main-val cyan" id="game-highscore-display">0000</span>
+            </div>
+            <div class="hud-score-box">
+              <span class="hud-mini-label">DISTANCE</span>
+              <span class="hud-main-val green" id="game-distance-display">0m</span>
+            </div>
+            <div class="hud-score-box">
+              <span class="hud-mini-label">SUSHI</span>
+              <span class="hud-main-val amber" id="game-sushi-display">🍣 0</span>
+            </div>
+            <div class="hud-score-box">
+              <span class="hud-mini-label">COMBO</span>
+              <span class="hud-main-val purple" id="game-combo-display">1x</span>
+            </div>
+            <button type="button" class="arcade-mode-toggle-btn active" id="arcade-difficulty-btn" title="Toggle Speed Mode (M)">
+              <i class="fa-solid fa-bolt"></i> <span id="arcade-mode-label">IMPOSSIBLE SPEED</span>
+            </button>
+            <div class="hud-controls-hint">
+              <span class="key-badge">SPACE</span> JUMP &bull; <span class="key-badge">P</span> PAUSE &bull; <span class="key-badge">M</span> MODE
+            </div>
+            <button type="button" class="arcade-hud-btn" id="arcade-pause-btn" title="Pause / Resume Game (P)" aria-label="Pause Game">
+              <i class="fa-solid fa-pause"></i>
+            </button>
+          </div>
+
+          <!-- Turbo Boost Active Energy Bar -->
+          <div class="arcade-turbo-track" id="arcade-turbo-track">
+            <div class="arcade-turbo-fill" id="arcade-turbo-fill"></div>
+            <div class="arcade-turbo-label"><i class="fa-solid fa-bolt"></i> TURBO INVINCIBLE DASH ACTIVE!</div>
+          </div>
+
+          <!-- Game Canvas Container -->
+          <div class="game-canvas-container" id="game-canvas-container">
+            <canvas id="game-canvas" width="800" height="360"></canvas>
+
+            <!-- Start Overlay -->
+            <div class="game-overlay" id="game-start-overlay">
+              <div class="overlay-modal">
+                <div class="arcade-title-glow">SHAURYA'S CYBER DASH</div>
+                <div class="impossible-mode-banner">
+                  <i class="fa-solid fa-fire"></i> ⚡ IMPOSSIBLE MODE ACTIVE &bull; SUPER SONIC SPEED ⚡
+                </div>
+                <p class="overlay-desc">Guide Shaurya across the hyper-speed track! Leap laser hurdles, smash barriers, grab sushi &amp; trigger Turbo Boost!</p>
+                <div class="overlay-item-guide">
+                  <span>🍣 Sushi: <strong>+50 pts</strong></span>
+                  <span>🏆 Trophy: <strong>+100 pts</strong></span>
+                  <span>⚡ Cyan Bolt: <strong>Turbo Invincible!</strong></span>
+                  <span>🔥 Multi-chains: <strong>Combo Multiplier!</strong></span>
+                </div>
+                <button type="button" class="btn btn-primary cyber-glow-btn game-btn" id="start-game-btn" style="font-size: 1.1rem; padding: 0.9rem 2.2rem;">
+                  <i class="fa-solid fa-play"></i> START IMPOSSIBLE SPRINT (SPACE)
+                </button>
+              </div>
+            </div>
+
+            <!-- Pause Overlay -->
+            <div class="game-overlay hidden" id="game-pause-overlay">
+              <div class="overlay-modal">
+                <div class="arcade-title-glow" style="color: var(--accent-amber); text-shadow: 0 0 20px rgba(245, 158, 11, 0.8);">GAME PAUSED</div>
+                <p class="overlay-desc">Catch your breath! Shaurya is ready to sprint back into action.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-primary cyber-glow-btn" id="resume-game-btn">
+                    <i class="fa-solid fa-play"></i> RESUME (P)
+                  </button>
+                  <button type="button" class="btn btn-outline" id="pause-restart-btn">
+                    <i class="fa-solid fa-rotate-right"></i> RESTART
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="game-overlay hidden" id="game-over-overlay">
+              <div class="overlay-modal game-over-modal">
+                <div class="arcade-title-glow" style="font-size: 1.8rem; color: #ef4444;">RACE FINISHED!</div>
+                
+                <div class="game-over-stats-grid">
+                  <div class="stat-card-mini">
+                    <span class="stat-card-label">FINAL SCORE</span>
+                    <strong id="final-score-val" class="stat-card-val gradient-text">0</strong>
+                  </div>
+                  <div class="stat-card-mini">
+                    <span class="stat-card-label">DISTANCE</span>
+                    <strong id="final-distance-val" class="stat-card-val green">0m</strong>
+                  </div>
+                  <div class="stat-card-mini">
+                    <span class="stat-card-label">SUSHI COLLECTED</span>
+                    <strong id="final-sushi-val" class="stat-card-val amber">🍣 0</strong>
+                  </div>
+                  <div class="stat-card-mini">
+                    <span class="stat-card-label">MAX COMBO</span>
+                    <strong id="final-combo-val" class="stat-card-val purple">1x</strong>
+                  </div>
+                </div>
+
+                <div id="new-highscore-badge" class="new-highscore-badge hidden">
+                  <i class="fa-solid fa-trophy"></i> NEW ALL-TIME RECORD!
+                </div>
+
+                <p id="game-over-message" class="overlay-desc" style="margin-top: 1rem;">Awesome sprint! Shaurya is ready for another round!</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.25rem;">
+                  <button type="button" class="btn btn-primary cyber-glow-btn" id="restart-game-btn">
+                    <i class="fa-solid fa-rotate-right"></i> PLAY AGAIN
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arcade Controls Bar (Mobile / Touch friendly) -->
+          <div class="arcade-touch-bar">
+            <button type="button" class="btn btn-outline touch-action-btn" id="touch-jump-btn">
+              <i class="fa-solid fa-arrow-up"></i> JUMP (TAP / SPACE)
+            </button>
+            <button type="button" class="btn btn-outline touch-action-btn touch-pause-btn" id="touch-pause-btn">
+              <i class="fa-solid fa-pause"></i> PAUSE
+            </button>
+            <div class="arcade-sound-indicator">
+              <i class="fa-solid fa-music"></i> 8-Bit Web Audio SFX Active
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Triathlon Race Stage Simulator
+         ========================================================================== -->
+    <section class="section race-sim-section" id="race-sim">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-flag-checkered"></i> Live Telemetry</span>
+          <h2 class="section-title">Interactive Triathlon Race Simulator 🏁</h2>
+          <p class="section-subtitle">
+            Watch how Shaurya navigates the 3 stages of a junior triathlon: Swim 🏊‍♂️, Bike 🚴‍♂️, and Sprint Run 🏃‍♂️. Click "Start Race Simulation" to launch the racer!
+          </p>
+        </div>
+
+        <div class="race-sim-card">
+          <!-- Simulation Track Progress -->
+          <div class="sim-track-wrapper">
+            <div class="sim-stage-markers">
+              <div class="stage-marker active" id="sim-marker-swim">
+                <div class="stage-dot"><i class="fa-solid fa-person-swimming"></i></div>
+                <span>Stage 1: Swim (0.2km)</span>
+              </div>
+              <div class="stage-marker" id="sim-marker-t1">
+                <div class="stage-dot transition-dot">T1</div>
+                <span>Transition 1</span>
+              </div>
+              <div class="stage-marker" id="sim-marker-bike">
+                <div class="stage-dot"><i class="fa-solid fa-person-biking"></i></div>
+                <span>Stage 2: Bike (5km)</span>
+              </div>
+              <div class="stage-marker" id="sim-marker-t2">
+                <div class="stage-dot transition-dot">T2</div>
+                <span>Transition 2</span>
+              </div>
+              <div class="stage-marker" id="sim-marker-run">
+                <div class="stage-dot"><i class="fa-solid fa-person-running"></i></div>
+                <span>Stage 3: Run (1.5km)</span>
+              </div>
+              <div class="stage-marker" id="sim-marker-finish">
+                <div class="stage-dot finish-dot"><i class="fa-solid fa-flag-checkered"></i></div>
+                <span>Finish Line</span>
+              </div>
+            </div>
+
+            <!-- Animated Runner Course Line -->
+            <div class="course-line-track">
+              <div class="course-line-fill" id="course-progress-fill" style="width: 0%;"></div>
+              <div class="racer-avatar" id="racer-avatar" style="left: 0%;">
+                <div class="racer-emoji" id="racer-emoji">🏊‍♂️</div>
+                <div class="racer-tag">Shaurya #1</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Telemetry Dashboard -->
+          <div class="telemetry-grid">
+            <div class="telemetry-box">
+              <span class="tele-title">CURRENT STAGE</span>
+              <span class="tele-val cyan" id="tele-stage-text">READY AT START LINE</span>
+            </div>
+            <div class="telemetry-box">
+              <span class="tele-title">ELAPSED TIME</span>
+              <span class="tele-val" id="tele-timer-text">00:00.00</span>
+            </div>
+            <div class="telemetry-box">
+              <span class="tele-title">HEART RATE</span>
+              <span class="tele-val pink" id="tele-hr-text"><i class="fa-solid fa-heart-pulse"></i> 135 BPM</span>
+            </div>
+            <div class="telemetry-box">
+              <span class="tele-title">PACE CADENCE</span>
+              <span class="tele-val green" id="tele-pace-text">OPTIMAL</span>
+            </div>
+          </div>
+
+          <!-- Simulator Action Controls -->
+          <div class="sim-actions-row">
+            <button type="button" class="btn btn-primary cyber-glow-btn" id="start-race-sim-btn">
+              <i class="fa-solid fa-play"></i> START RACE SIMULATION
+            </button>
+            <button type="button" class="btn btn-outline" id="reset-race-sim-btn">
+              <i class="fa-solid fa-rotate-left"></i> Reset Track
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Photo & Media Gallery Section (Showcasing All Images)
+         ========================================================================== -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Moments &amp; Visual Arts</span>
+          <h2 class="section-title">Photo &amp; Media Gallery</h2>
+          <p class="section-subtitle">
+            Featuring high-resolution race day photography, enhanced digital artworks, and design inspiration boards. Click any image to view in the interactive Lightbox!
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="gallery-filters">
+          <button class="filter-btn active" data-filter="all">All Media</button>
+          <button class="filter-btn" data-filter="artwork">🎨 Digital Artwork</button>
+          <button class="filter-btn" data-filter="sports">🏃‍♂️ Live Sports</button>
+          <button class="filter-btn" data-filter="inspiration">🌊 Design Inspiration</button>
+          <button class="filter-btn" data-filter="future">📸 Future Slots</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="gallery-container">
+          
+          <!-- Image 1: Gemini Determination Artwork -->
+          <div class="gallery-item-wrapper" data-category="artwork">
+            <div class="gallery-item tall clickable-gallery-item" data-full-src="Gemini-created-photo/Gemini_Generated_Image_44sznr44sznr44sz.jpg" data-caption="Shaurya's Determination - High-speed neon track sprint artwork">
+              <img src="Gemini-created-photo/Gemini_Generated_Image_44sznr44sznr44sz.jpg" alt="Shaurya Determination Artwork" class="gallery-img" loading="lazy">
+              <div class="gallery-overlay">
+                <h3 class="gallery-item-title">Determination Sprint Art</h3>
+                <span class="gallery-item-tag">🎨 DIGITAL ARTWORK &amp; SPEED TRAILS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image 2: Gemini Underwater Swimming Artwork -->
+          <div class="gallery-item-wrapper" data-category="artwork">
+            <div class="gallery-item clickable-gallery-item" data-full-src="Gemini-created-photo/Gemini_Generated_Image_ys92p0ys92p0ys92.jpg" data-caption="Shaurya's Aquatic Flow - Sunlit underwater swimming glide">
+              <img src="Gemini-created-photo/Gemini_Generated_Image_ys92p0ys92p0ys92.jpg" alt="Shaurya Underwater Swimming Artwork" class="gallery-img" loading="lazy">
+              <div class="gallery-overlay">
+                <h3 class="gallery-item-title">Aquatic Velocity &amp; Sunbeams</h3>
+                <span class="gallery-item-tag">🎨 DIGITAL ARTWORK &amp; HYDRODYNAMICS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image 3: Real Track Sprint Photo -->
+          <div class="gallery-item-wrapper" data-category="sports">
+            <div class="gallery-item tall clickable-gallery-item" data-full-src="IMG-20260624-WA0023.jpg" data-caption="Shaurya Track Sprint on School Race Day">
+              <img src="IMG-20260624-WA0023.jpg" alt="Shaurya Running Sprint" class="gallery-img" loading="lazy">
+              <div class="gallery-overlay">
+                <h3 class="gallery-item-title">School Track &amp; Field Gold</h3>
+                <span class="gallery-item-tag">🏃‍♂️ LIVE RACE DAY PHOTOGRAPHY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image 4: Real Starting Block Swim Dive Photo -->
+          <div class="gallery-item-wrapper" data-category="sports">
+            <div class="gallery-item clickable-gallery-item" data-full-src="IMG-20260624-WA0026.jpg" data-caption="Shaurya's Competitive Swimming Starting Block Dive">
+              <img src="IMG-20260624-WA0026.jpg" alt="Shaurya Swimming Dive" class="gallery-img" loading="lazy">
+              <div class="gallery-overlay">
+                <h3 class="gallery-item-title">Competitive Starting Block Dive</h3>
+                <span class="gallery-item-tag">🏊‍♂️ LIVE RACE DAY PHOTOGRAPHY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image 5: Inspiration UI Image -->
+          <div class="gallery-item-wrapper" data-category="inspiration">
+            <div class="gallery-item tall clickable-gallery-item" data-full-src="inspiration-image/image.png" data-caption="Design Inspiration &amp; Aesthetic Lookbook Moodboard">
+              <img src="inspiration-image/image.png" alt="Editorial Inspiration Image" class="gallery-img" loading="lazy">
+              <div class="gallery-overlay">
+                <h3 class="gallery-item-title">Cinematic Editorial Vision</h3>
+                <span class="gallery-item-tag">🌊 DESIGN INSPIRATION &amp; LOOKBOOK</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Future Media Slot 1 -->
+          <div class="gallery-item-wrapper" data-category="future">
+            <div class="future-media-card" onclick="document.getElementById('media-hub').scrollIntoView({behavior: 'smooth'})">
+              <div class="future-icon"><i class="fa-solid fa-camera-retro"></i></div>
+              <h3 class="future-card-title">Next Triathlon Photo</h3>
+              <p class="future-card-desc">Slot ready for your next race day photo or medal picture!</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Gaming & Media Lounge Section
+         ========================================================================== -->
+    <section class="section" id="gaming">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Fun &amp; Entertainment</span>
+          <h2 class="section-title">Gaming Lounge 🕹️</h2>
+          <p class="section-subtitle">When I am not swimming or running, I love challenging high reflex rhythm games and conquering new levels!</p>
+        </div>
+
+        <div class="gaming-card">
+          <div class="gaming-info">
+            <span class="gaming-info-tag"><i class="fa-solid fa-gamepad"></i> Featured Video Game</span>
+            <h3 class="gaming-title">My Favorite Video Game</h3>
+            <p class="gaming-desc">
+              Fast reflexes, cool rhythm beats, and awesome levels. Check out the featured gameplay trailer below or watch it directly!
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="https://www.youtube.com/watch?v=YZrLJw8vpLA" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background: var(--gradient-purple);">
+                <i class="fa-brands fa-youtube"></i> Watch on YouTube
+              </a>
+              <a href="#arcade-game" class="btn btn-outline">
+                <i class="fa-solid fa-gamepad"></i> Play Shaurya's Cyber Sprint
+              </a>
+            </div>
+          </div>
+
+          <div class="gaming-preview-box">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/YZrLJw8vpLA" 
+              title="Shaurya's Favorite Video Game" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Future Media Hub Section (Interactive Addition & Guide)
+         ========================================================================== -->
+    <section class="section" id="media-hub">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Media Expansion Ready</span>
+          <h2 class="section-title">Future Media &amp; Image Hub</h2>
+          <p class="section-subtitle">Easily preview and add new photos, videos, and race memories to your website as you grow!</p>
+        </div>
+
+        <div class="media-hub-box">
+          <div class="media-hub-grid">
+            <!-- Instructions Card -->
+            <div class="upload-instruction-card">
+              <h3 style="margin-bottom: 1.25rem; color: var(--accent-cyan);">
+                <i class="fa-solid fa-circle-question"></i> How to add new images in the future:
+              </h3>
+              
+              <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Save your file in this folder</h4>
+                  <p>Save any photo (e.g., <code>my-triathlon-medal.jpg</code>) into this website folder or <code>Gemini-created-photo</code>.</p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Test it with the Live Tester</h4>
+                  <p>Use the Live Preview Box on the right to test how it looks instantly with the Lightbox!</p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Copy and paste into index.html</h4>
+                  <p>Click "Copy HTML Code" and paste it right inside the <code>#gallery-container</code> div.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Live Tester -->
+            <div class="live-preview-box" id="media-tester-form">
+              <h3 style="color: var(--text-primary); font-size: 1.2rem;">
+                <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-cyan);"></i> Live Image Tester &amp; Code Generator
+              </h3>
+
+              <div>
+                <label for="media-file-input" style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 0.35rem;">
+                  Choose a photo from your computer:
+                </label>
+                <input type="file" id="media-file-input" accept="image/*" class="form-input" style="padding: 0.5rem;">
+              </div>
+
+              <div>
+                <label for="media-url-input" style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 0.35rem;">
+                  Or enter image file name / web URL:
+                </label>
+                <input type="text" id="media-url-input" placeholder="e.g. Gemini-created-photo/new-image.jpg" class="form-input">
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 0.75rem;">
+                <div>
+                  <input type="text" id="media-title-input" placeholder="Photo Caption / Title" class="form-input">
+                </div>
+                <div>
+                  <select id="media-category-select" class="form-input">
+                    <option value="artwork">Digital Artwork</option>
+                    <option value="sports">Live Sports</option>
+                    <option value="inspiration">Inspiration</option>
+                    <option value="family">Family</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Live Preview Output Box -->
+              <div id="live-preview-display" style="min-height: 140px; border: 1px dashed var(--border-glass); border-radius: var(--radius-sm); padding: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.15);">
+                <span style="color: var(--text-muted); font-size: 0.85rem;">
+                  <i class="fa-solid fa-image"></i> Select an image above to see instant preview
+                </span>
+              </div>
+
+              <!-- Generated Code -->
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <span style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600;">Generated HTML Snippet:</span>
+                  <button type="button" id="copy-code-btn" class="btn btn-outline" style="padding: 0.3rem 0.8rem; font-size: 0.78rem;">
+                    <i class="fa-solid fa-copy"></i> Copy Code
+                  </button>
+                </div>
+                <pre id="code-snippet-output" style="background: rgba(0,0,0,0.4); padding: 0.75rem; border-radius: 6px; font-size: 0.75rem; color: var(--accent-cyan); overflow-x: auto; max-height: 100px; border: 1px solid var(--border-glass);">Select an image or type above to generate snippet</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Cheer Shaurya On / Guestbook Section
+         ========================================================================== -->
+    <section class="section" id="cheer">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Cheer &amp; Support</span>
+          <h2 class="section-title">Leave a Cheer for Shaurya! 📣</h2>
+          <p class="section-subtitle">Leave an energetic message, cheer him for his next triathlon, or say hello!</p>
+        </div>
+
+        <div class="guestbook-card">
+          <form class="guestbook-form" id="guestbook-form">
+            <div class="form-row">
+              <input type="text" id="guest-name" placeholder="Your Name / Relationship (e.g. Sam, Mom, Dad, Coach, Friend)" class="form-input" required>
+              <button type="submit" class="btn btn-primary cyber-glow-btn" style="justify-content: center;">
+                <i class="fa-solid fa-paper-plane"></i> Post Cheer
+              </button>
+            </div>
+            <textarea id="guest-message" placeholder="Type your cheerful message here (e.g., 'Go Shaurya! Smash the next 50m freestyle and triathlon!')..." class="form-input" required></textarea>
+          </form>
+
+          <h3 style="font-size: 1.15rem; margin-bottom: 1rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-comments"></i> Recent Cheers &amp; Messages:
+          </h3>
+          <div class="messages-stream" id="messages-stream">
+            <!-- Messages populated via script.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Shaurya Explorer Quests Drawer / Modal
+       ========================================================================== -->
+  <div class="quests-modal-backdrop" id="quests-modal" role="dialog" aria-modal="true" aria-label="Shaurya Explorer Quests">
+    <div class="quests-modal-box">
+      <div class="quests-modal-header">
+        <div>
+          <h3 class="quests-modal-title"><i class="fa-solid fa-compass" style="color: var(--accent-cyan);"></i> Shaurya Explorer Quests</h3>
+          <p class="quests-modal-subtitle">Complete all 5 secret quests to unlock the VIP Champion Badge!</p>
+        </div>
+        <button class="modal-close-btn" id="quests-close-btn" aria-label="Close Quests">&times;</button>
+      </div>
+
+      <div class="quests-progress-bar-wrapper">
+        <div class="quests-progress-bar-fill" id="quests-progress-fill" style="width: 0%;"></div>
+      </div>
+      <div class="quests-status-text" id="quests-status-label">0 of 5 Quests Completed</div>
+
+      <div class="quests-list" id="quests-list">
+        <div class="quest-item" id="quest-item-theme">
+          <div class="quest-checkbox"><i class="fa-solid fa-check"></i></div>
+          <div class="quest-details">
+            <strong>🌓 Theme Master</strong>
+            <span>Switch between Dark and Light mode using the sun/moon button in the top right.</span>
+          </div>
+        </div>
+
+        <div class="quest-item" id="quest-item-dive">
+          <div class="quest-checkbox"><i class="fa-solid fa-check"></i></div>
+          <div class="quest-details">
+            <strong>🏊‍♂️ Dive Form Analyst</strong>
+            <span>Inspect all 4 interactive hotspots in the Freestyle &amp; Dive section.</span>
+          </div>
+        </div>
+
+        <div class="quest-item" id="quest-item-sushi">
+          <div class="quest-checkbox"><i class="fa-solid fa-check"></i></div>
+          <div class="quest-details">
+            <strong>🍣 Master Sushi Chef</strong>
+            <span>Feed Shaurya at least 5 sushi pieces using the feeder in the About Me section.</span>
+          </div>
+        </div>
+
+        <div class="quest-item" id="quest-item-game">
+          <div class="quest-checkbox"><i class="fa-solid fa-check"></i></div>
+          <div class="quest-details">
+            <strong>🎮 Cyber Sprint Runner</strong>
+            <span>Play Shaurya's Cyber Sprint game and score at least 100 points!</span>
+          </div>
+        </div>
+
+        <div class="quest-item" id="quest-item-cheer">
+          <div class="quest-checkbox"><i class="fa-solid fa-check"></i></div>
+          <div class="quest-details">
+            <strong>💬 #1 Fan Cheer</strong>
+            <span>Leave a cheerful message in Shaurya's Guestbook at the bottom of the page.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quest-reward-box" id="quest-reward-box">
+        <div class="reward-locked" id="reward-locked-state">
+          <i class="fa-solid fa-lock"></i> Complete all quests to unlock the VIP Champion Badge!
+        </div>
+        <div class="reward-unlocked hidden" id="reward-unlocked-state" style="display: none;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏆</div>
+          <div>
+            <h4 style="color: #f59e0b; margin-bottom: 0.25rem;">CONGRATULATIONS! ALL QUESTS COMPLETED!</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">You are officially recognized as an Honorary VIP Friend &amp; Champion of Shaurya!</p>
+            <button type="button" class="btn btn-sm btn-primary" id="claim-vip-btn">
+              <i class="fa-solid fa-certificate"></i> View VIP Certificate
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       VIP Certificate Modal (Unlocked by Quests)
+       ========================================================================== -->
+  <div class="quests-modal-backdrop" id="vip-modal" role="dialog" aria-modal="true" aria-label="VIP Certificate">
+    <div class="quests-modal-box certificate-modal-box">
+      <button class="modal-close-btn" id="vip-close-btn" aria-label="Close Certificate">&times;</button>
+      <div class="certificate-frame">
+        <div class="cert-gold-badge">★ ★ ★ ★ ★</div>
+        <h2 class="cert-title">HONORARY VIP CHAMPION</h2>
+        <p class="cert-subtitle">OFFICIAL DIGITAL CERTIFICATE OF EXCELLENCE</p>
+        <div class="cert-divider"></div>
+        <p class="cert-body">
+          This certifies that the esteemed visitor has explored all facets of <strong>Shaurya's Editorial Portfolio</strong>, mastered the dive technique, fueled the sushi meter, and triumphed in the Cyber Sprint Arcade!
+        </p>
+        <div class="cert-signatures">
+          <div class="signature-block">
+            <span class="sig-name">Shaurya</span>
+            <span class="sig-title">5th Grade Athlete &amp; Gamer</span>
+          </div>
+          <div class="signature-block">
+            <span class="sig-seal">🏅 OFFICIAL SEAL 🏅</span>
+            <span class="sig-title">Brunei Darussalam</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Interactive Lightbox Modal
+       ========================================================================== -->
+  <div class="lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image Preview Modal">
+    <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
+    <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" aria-label="Previous Image">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <div class="lightbox-content">
+      <img src="" alt="Full Preview" class="lightbox-img" id="lightbox-image">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+    <button class="lightbox-nav-btn lightbox-next" id="lightbox-next" aria-label="Next Image">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- ==========================================================================
+       Footer
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <span class="brand-text">Shaurya<span style="color: var(--accent-cyan);">.</span></span>
+      </div>
+      <div class="footer-links">
+        <a href="#hero" class="footer-link">Home</a>
+        <a href="#lookbook" class="footer-link">Lookbook</a>
+        <a href="#about" class="footer-link">About</a>
+        <a href="#athletics" class="footer-link">Sports</a>
+        <a href="#trophy-vault" class="footer-link">Trophy Vault</a>
+        <a href="#swim-tech" class="footer-link">Dive Tech</a>
+        <a href="#arcade-game" class="footer-link">Arcade Game</a>
+        <a href="#race-sim" class="footer-link">Race Sim</a>
+        <a href="#gallery" class="footer-link">Gallery</a>
+        <a href="#cheer" class="footer-link">Say Hi</a>
+      </div>
+      <p class="footer-copyright">
+        &copy; 2026 Shaurya. All rights reserved. Crafted with Modern HTML5, CSS3, Pure Web Audio &amp; Editorial Aesthetics 🩵.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Custom Logic Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>
