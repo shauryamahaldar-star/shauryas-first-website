@@ -955,11 +955,11 @@
               <span class="hud-mini-label">COMBO</span>
               <span class="hud-main-val purple" id="game-combo-display">1x</span>
             </div>
-            <button type="button" class="arcade-mode-toggle-btn active" id="arcade-difficulty-btn" title="Toggle Speed Mode (M)">
-              <i class="fa-solid fa-bolt"></i> <span id="arcade-mode-label">IMPOSSIBLE SPEED</span>
+            <button type="button" class="arcade-mode-toggle-btn active expert-pulse" id="arcade-difficulty-btn" title="Toggle Speed Mode (M)">
+              <i class="fa-solid fa-skull"></i> <span id="arcade-mode-label">💀 IMPOSSIBLE IMPOSSIBLE (EXPERT)</span>
             </button>
             <div class="hud-controls-hint">
-              <span class="key-badge">SPACE</span> JUMP &bull; <span class="key-badge">P</span> PAUSE &bull; <span class="key-badge">M</span> MODE
+              <span class="key-badge">SPACE / W</span> JUMP (x2 DOUBLE) &bull; <span class="key-badge">S / DOWN</span> FAST DIVE &bull; <span class="key-badge">P</span> PAUSE &bull; <span class="key-badge">M</span> MODE
             </div>
             <button type="button" class="arcade-hud-btn" id="arcade-pause-btn" title="Pause / Resume Game (P)" aria-label="Pause Game">
               <i class="fa-solid fa-pause"></i>
@@ -980,18 +980,20 @@
             <div class="game-overlay" id="game-start-overlay">
               <div class="overlay-modal">
                 <div class="arcade-title-glow">SHAURYA'S CYBER DASH</div>
-                <div class="impossible-mode-banner">
-                  <i class="fa-solid fa-fire"></i> ⚡ IMPOSSIBLE MODE ACTIVE &bull; SUPER SONIC SPEED ⚡
+                <div class="impossible-mode-banner expert-banner">
+                  <i class="fa-solid fa-skull"></i> 💀 IMPOSSIBLE IMPOSSIBLE &bull; EXPERT REFLEX SPRINT 💀
                 </div>
-                <p class="overlay-desc">Guide Shaurya across the hyper-speed track! Leap laser hurdles, smash barriers, grab sushi &amp; trigger Turbo Boost!</p>
+                <p class="overlay-desc">Brutal supersonic gauntlet! Use <strong>Double Jump (tap Space twice)</strong> &amp; <strong>Fast Dive (press S / Down)</strong> to dodge ultra-speed hurdles, floating hunter drones &amp; high gates!</p>
                 <div class="overlay-item-guide">
                   <span>🍣 Sushi: <strong>+50 pts</strong></span>
                   <span>🏆 Trophy: <strong>+100 pts</strong></span>
-                  <span>⚡ Cyan Bolt: <strong>Turbo Invincible!</strong></span>
-                  <span>🔥 Multi-chains: <strong>Combo Multiplier!</strong></span>
+                  <span>⚡ Cyan Bolt: <strong>Hyper Turbo!</strong></span>
+                  <span>🔥 Combos: <strong>Up to 10x!</strong></span>
+                  <span>🦿 Double Jump: <strong>Tap Jump in Air!</strong></span>
+                  <span>⚡ Fast Dive: <strong>Press S / Down</strong></span>
                 </div>
                 <button type="button" class="btn btn-primary cyber-glow-btn game-btn" id="start-game-btn" style="font-size: 1.1rem; padding: 0.9rem 2.2rem;">
-                  <i class="fa-solid fa-play"></i> START IMPOSSIBLE SPRINT (SPACE)
+                  <i class="fa-solid fa-play"></i> LAUNCH IMPOSSIBLE SPRINT (SPACE)
                 </button>
               </div>
             </div>
@@ -1043,7 +1045,7 @@
                 <p id="game-over-message" class="overlay-desc" style="margin-top: 1rem;">Awesome sprint! Shaurya is ready for another round!</p>
                 <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.25rem;">
                   <button type="button" class="btn btn-primary cyber-glow-btn" id="restart-game-btn">
-                    <i class="fa-solid fa-rotate-right"></i> PLAY AGAIN
+                    <i class="fa-solid fa-rotate-right"></i> SPRINT AGAIN
                   </button>
                 </div>
               </div>
@@ -1053,7 +1055,10 @@
           <!-- Arcade Controls Bar (Mobile / Touch friendly) -->
           <div class="arcade-touch-bar">
             <button type="button" class="btn btn-outline touch-action-btn" id="touch-jump-btn">
-              <i class="fa-solid fa-arrow-up"></i> JUMP (TAP / SPACE)
+              <i class="fa-solid fa-arrow-up"></i> JUMP / x2 AIR BOOST
+            </button>
+            <button type="button" class="btn btn-outline touch-action-btn touch-dive-btn" id="touch-dive-btn">
+              <i class="fa-solid fa-arrow-down"></i> FAST DIVE
             </button>
             <button type="button" class="btn btn-outline touch-action-btn touch-pause-btn" id="touch-pause-btn">
               <i class="fa-solid fa-pause"></i> PAUSE

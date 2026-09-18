@@ -131,6 +131,54 @@ function playJumpSound() {
   } catch (e) {}
 }
 
+function playDoubleJumpSound() {
+  if (!soundEnabled) return;
+  ensureAudioContext();
+  if (!audioCtx) return;
+
+  try {
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(320, now);
+    osc.frequency.exponentialRampToValueAtTime(920, now + 0.14);
+
+    gain.gain.setValueAtTime(0.12, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.14);
+  } catch (e) {}
+}
+
+function playDiveSound() {
+  if (!soundEnabled) return;
+  ensureAudioContext();
+  if (!audioCtx) return;
+
+  try {
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(650, now);
+    osc.frequency.exponentialRampToValueAtTime(80, now + 0.12);
+
+    gain.gain.setValueAtTime(0.15, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.12);
+  } catch (e) {}
+}
+
 function playCollectSound() {
   if (!soundEnabled) return;
   ensureAudioContext();
@@ -765,6 +813,7 @@ function initArcadeGame() {
   const resumeBtn = document.getElementById('resume-game-btn');
   const pauseRestartBtn = document.getElementById('pause-restart-btn');
   const touchJumpBtn = document.getElementById('touch-jump-btn');
+  const touchDiveBtn = document.getElementById('touch-dive-btn');
   const touchPauseBtn = document.getElementById('touch-pause-btn');
 
   // HUD Displays
@@ -789,10 +838,10 @@ function initArcadeGame() {
   let highScore = parseInt(localStorage.getItem('shaurya-game-highscore') || '0', 10);
   if (highscoreDisplay) highscoreDisplay.textContent = String(highScore).padStart(4, '0');
 
-  // Game state
+  // Game state (💀 IMPOSSIBLE IMPOSSIBLE DEFAULT ACTIVE)
   let isPlaying = false;
   let isPaused = false;
-  let isImpossibleMode = true; // IMPOSSIBLE MODE DEFAULT ON!
+  let isImpossibleMode = true;
   let animationFrameId = null;
 
   let score = 0;
@@ -802,24 +851,28 @@ function initArcadeGame() {
   let comboTimer = 0;
   let maxComboReached = 1;
 
-  let gameSpeed = isImpossibleMode ? 14.0 : 8.0;
+  // Blazing expert speed: 22.0 base velocity in Impossible Mode!
+  let gameSpeed = isImpossibleMode ? 22.0 : 13.0;
   let frameCount = 0;
   let screenShakeTimer = 0;
   let screenShakeIntensity = 0;
   let jumpBufferTimer = 0;
-  const MAX_TURBO_TIME = 320; // Extended hyperdrive warp duration (~5.3 seconds)
+  const MAX_TURBO_TIME = 320;
 
-  // Player Character
+  // Player Character with Double Jump & Fast Dive Capabilities
   const player = {
     x: 90,
     y: 246,
     width: 44,
     height: 54,
     vy: 0,
-    gravity: isImpossibleMode ? 0.95 : 0.82,
-    jumpPower: isImpossibleMode ? -16.0 : -14.8,
+    gravity: isImpossibleMode ? 1.25 : 0.88,
+    jumpPower: isImpossibleMode ? -18.2 : -15.2,
+    doubleJumpPower: isImpossibleMode ? -16.8 : -14.0,
     isGrounded: true,
     isJumping: false,
+    hasDoubleJumped: false,
+    isDiving: false,
     turboTimer: 0,
     runCycle: 0,
     particles: [],
@@ -872,28 +925,30 @@ function initArcadeGame() {
 
   const billboards = [
     { text: 'SHAURYA ⚡', x: 200, color: '#00f0ff' },
-    { text: 'IMPOSSIBLE WARP 🚀', x: 600, color: '#ef4444' },
-    { text: 'LIGHTSPEED DASH 🔥', x: 1000, color: '#f59e0b' },
+    { text: 'IMPOSSIBLE IMPOSSIBLE 💀', x: 600, color: '#ef4444' },
+    { text: 'EXPERT REFLEX WARP 🔥', x: 1000, color: '#f59e0b' },
     { text: 'BRUNEI CHAMP 🇧🇳', x: 1400, color: '#10b981' }
   ];
 
   function toggleImpossibleMode() {
     isImpossibleMode = !isImpossibleMode;
     if (modeLabel) {
-      modeLabel.textContent = isImpossibleMode ? 'IMPOSSIBLE SPEED' : 'NORMAL SPRINT';
+      modeLabel.textContent = isImpossibleMode ? '💀 IMPOSSIBLE IMPOSSIBLE (EXPERT)' : '⚡ NORMAL SPRINT';
     }
     if (difficultyBtn) {
       if (isImpossibleMode) {
         difficultyBtn.classList.add('active');
+        difficultyBtn.classList.add('expert-pulse');
         difficultyBtn.style.borderColor = '#ef4444';
       } else {
         difficultyBtn.classList.remove('active');
+        difficultyBtn.classList.remove('expert-pulse');
         difficultyBtn.style.borderColor = 'rgba(0, 240, 255, 0.4)';
       }
     }
     playClickSound();
     if (!isPlaying) {
-      addFloatingText(isImpossibleMode ? '⚡ IMPOSSIBLE MODE ACTIVATED!' : '🚀 NORMAL MODE ACTIVATED!', canvas.width * 0.5, 120, isImpossibleMode ? '#ef4444' : '#00f0ff', 1.3);
+      addFloatingText(isImpossibleMode ? '💀 IMPOSSIBLE IMPOSSIBLE ACTIVATED!' : '⚡ NORMAL SPRINT ACTIVATED!', canvas.width * 0.5, 120, isImpossibleMode ? '#ef4444' : '#00f0ff', 1.3);
     }
   }
 
@@ -905,9 +960,12 @@ function initArcadeGame() {
     comboTimer = 0;
     maxComboReached = 1;
 
-    gameSpeed = isImpossibleMode ? 14.0 : 8.0;
-    player.gravity = isImpossibleMode ? 0.95 : 0.82;
-    player.jumpPower = isImpossibleMode ? -16.0 : -14.8;
+    gameSpeed = isImpossibleMode ? 22.0 : 13.0;
+    player.gravity = isImpossibleMode ? 1.25 : 0.88;
+    player.jumpPower = isImpossibleMode ? -18.2 : -15.2;
+    player.doubleJumpPower = isImpossibleMode ? -16.8 : -14.0;
+    player.hasDoubleJumped = false;
+    player.isDiving = false;
 
     frameCount = 0;
     screenShakeTimer = 0;
@@ -1009,12 +1067,14 @@ function initArcadeGame() {
     }
 
     if (gameOverMessage) {
-      if (score >= 800) {
-        gameOverMessage.textContent = '⚡ GODLIKE LIGHTSPEED! Shaurya completely shattered Impossible Mode!';
-      } else if (score >= 400) {
-        gameOverMessage.textContent = '🚀 SUPER SONIC REFLEXES! Blazing hyper warp sprint!';
+      if (score >= 1200) {
+        gameOverMessage.textContent = '💀 GODLIKE EXPERT! Shaurya conquered the IMPOSSIBLE IMPOSSIBLE warp speed!';
+      } else if (score >= 600) {
+        gameOverMessage.textContent = '⚡ INSANE REFLEXES! Super sonic double-jump masterclass!';
+      } else if (score >= 250) {
+        gameOverMessage.textContent = '🔥 GREAT RUN! Double Jump & Fast Dive are your keys to survive!';
       } else {
-        gameOverMessage.textContent = '🔥 Impossible Mode is wild! Grab the ⚡ Cyan Bolt for hyper warp speed!';
+        gameOverMessage.textContent = '💀 IMPOSSIBLE IMPOSSIBLE is brutally fast! Tap Jump in air for Double Jump, S/Down to Fast Dive!';
       }
     }
 
@@ -1030,11 +1090,12 @@ function initArcadeGame() {
     }
 
     if (player.isGrounded) {
-      // Dynamic jump power with anti-gravity rocket thrusters during turbo
-      const pwr = player.turboTimer > 0 ? (isImpossibleMode ? -17.5 : -15.5) : player.jumpPower;
+      const pwr = player.turboTimer > 0 ? (isImpossibleMode ? -19.5 : -17.0) : player.jumpPower;
       player.vy = pwr;
       player.isGrounded = false;
       player.isJumping = true;
+      player.hasDoubleJumped = false;
+      player.isDiving = false;
       playJumpSound();
 
       // Shockwave ring explosion under shoes
@@ -1042,28 +1103,82 @@ function initArcadeGame() {
         x: player.x + 22,
         y: player.y + player.height - 2,
         radius: 4,
-        maxRadius: player.turboTimer > 0 ? 80 : (isImpossibleMode ? 55 : 32),
-        color: player.turboTimer > 0 ? '#ff007f' : (isImpossibleMode ? '#f59e0b' : '#00f0ff'),
+        maxRadius: player.turboTimer > 0 ? 80 : (isImpossibleMode ? 60 : 35),
+        color: player.turboTimer > 0 ? '#ff007f' : (isImpossibleMode ? '#ef4444' : '#00f0ff'),
         alpha: 1.0
       });
 
       // Jump thrust dust & sparks
-      const sparkCount = player.turboTimer > 0 ? 18 : (isImpossibleMode ? 14 : 8);
+      const sparkCount = player.turboTimer > 0 ? 20 : (isImpossibleMode ? 16 : 8);
       for (let i = 0; i < sparkCount; i++) {
         player.particles.push({
           x: player.x + 10 + Math.random() * 24,
           y: player.y + player.height - 2,
-          vx: (Math.random() - 0.7) * (player.turboTimer > 0 ? 12 : 6),
-          vy: Math.random() * -6,
+          vx: (Math.random() - 0.7) * (player.turboTimer > 0 ? 12 : 7),
+          vy: Math.random() * -7,
           size: Math.random() * 5 + 2,
           color: player.turboTimer > 0 ? (Math.random() > 0.5 ? '#00f0ff' : '#ff007f') : (isImpossibleMode ? '#ef4444' : '#f59e0b'),
           life: 26,
           maxLife: 26
         });
       }
+    } else if (!player.isGrounded && !player.hasDoubleJumped) {
+      // ⚡ EXPERT DOUBLE JUMP (Mid-air sonic booster)
+      const dPwr = player.turboTimer > 0 ? -18.8 : player.doubleJumpPower;
+      player.vy = dPwr;
+      player.hasDoubleJumped = true;
+      player.isDiving = false;
+      playDoubleJumpSound();
+
+      player.shockwaves.push({
+        x: player.x + 22,
+        y: player.y + player.height - 2,
+        radius: 6,
+        maxRadius: 75,
+        color: '#00f0ff',
+        alpha: 1.0
+      });
+
+      for (let i = 0; i < 18; i++) {
+        player.particles.push({
+          x: player.x + 8 + Math.random() * 28,
+          y: player.y + player.height - 2,
+          vx: (Math.random() - 0.5) * 8,
+          vy: Math.random() * 6 + 3,
+          size: Math.random() * 5 + 3,
+          color: Math.random() > 0.5 ? '#00f0ff' : '#f59e0b',
+          life: 24,
+          maxLife: 24
+        });
+      }
+
+      addFloatingText('⚡ DOUBLE JUMP!', player.x + 20, player.y - 12, '#00f0ff', 1.35);
     } else {
       // Buffer jump for 8 frames so player jumps immediately upon landing
       jumpBufferTimer = 8;
+    }
+  }
+
+  function triggerDive() {
+    if (!isPlaying || isPaused) return;
+    if (!player.isGrounded && !player.isDiving) {
+      player.isDiving = true;
+      player.vy = 24; // Fast hypersonic downward stomp
+      playDiveSound();
+
+      for (let i = 0; i < 14; i++) {
+        player.particles.push({
+          x: player.x + 10 + Math.random() * 24,
+          y: player.y,
+          vx: (Math.random() - 0.5) * 6,
+          vy: -Math.random() * 7 - 2,
+          size: Math.random() * 6 + 2,
+          color: Math.random() > 0.5 ? '#ef4444' : '#f59e0b',
+          life: 20,
+          maxLife: 20
+        });
+      }
+      addFloatingText('⚡ FAST DIVE!', player.x + 20, player.y - 10, '#f59e0b', 1.25);
     }
   }
 
@@ -1133,13 +1248,13 @@ function initArcadeGame() {
     frameCount++;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Calculate dynamic speed (IMPOSSIBLY IMPOSSIBLE WARP MULTIPLIER: 5.5X VELOCITY!)
-    const turboMultiplier = isImpossibleMode ? 5.5 : 3.2;
+    // Calculate dynamic speed (EXPERT SUPERSONIC VELOCITY)
+    const turboMultiplier = isImpossibleMode ? 3.4 : 2.5;
     const currentSpeed = player.turboTimer > 0 ? (gameSpeed * turboMultiplier) : gameSpeed;
 
     // Screen Shake Camera & Extreme Turbo Warp Rumble
     ctx.save();
-    const turboRumble = player.turboTimer > 0 ? (Math.random() - 0.5) * (isImpossibleMode ? 5.5 : 3.5) : 0;
+    const turboRumble = player.turboTimer > 0 ? (Math.random() - 0.5) * (isImpossibleMode ? 6 : 3.5) : 0;
     if (screenShakeTimer > 0 || player.turboTimer > 0) {
       if (screenShakeTimer > 0) screenShakeTimer--;
       const shakeX = (Math.random() - 0.5) * screenShakeIntensity + turboRumble;
@@ -1147,17 +1262,22 @@ function initArcadeGame() {
       ctx.translate(shakeX, shakeY);
     }
 
-    // Distance & Score progression (Hyper Speed Ticking during Turbo)
+    // Distance & Score progression (Hyper Speed Ticking)
     if (frameCount % (player.turboTimer > 0 ? 1 : 2) === 0) {
-      distanceMeters += (player.turboTimer > 0 ? (isImpossibleMode ? 24 : 10) : (isImpossibleMode ? 2 : 1));
-      score += comboMultiplier * (player.turboTimer > 0 ? (isImpossibleMode ? 14 : 5) : (isImpossibleMode ? 2 : 1));
+      distanceMeters += (player.turboTimer > 0 ? (isImpossibleMode ? 28 : 12) : (isImpossibleMode ? 3 : 1));
+      score += comboMultiplier * (player.turboTimer > 0 ? (isImpossibleMode ? 16 : 6) : (isImpossibleMode ? 3 : 1));
       updateScoreHUD();
     }
 
-    // Speed progression curve
-    if (frameCount % 260 === 0 && gameSpeed < (isImpossibleMode ? 30.0 : 16.0)) {
-      gameSpeed += 0.5;
-      addFloatingText(isImpossibleMode ? '⚡ WARP SPEED ACCELERATING!' : 'SPEED UP! ⚡', canvas.width * 0.5, 80, isImpossibleMode ? '#ef4444' : '#00f0ff', 1.4);
+    // Speed progression curve (Accelerates much faster up to 46.0!)
+    if (frameCount % 140 === 0 && gameSpeed < (isImpossibleMode ? 46.0 : 25.0)) {
+      gameSpeed += isImpossibleMode ? 0.75 : 0.4;
+      addFloatingText(isImpossibleMode ? '⚡ EXPERT WARP ACCELERATING!' : 'SPEED UP! ⚡', canvas.width * 0.5, 80, isImpossibleMode ? '#ef4444' : '#00f0ff', 1.4);
+    }
+
+    // High distance milestones
+    if (distanceMeters > 0 && distanceMeters % 250 === 0 && frameCount % 2 === 0) {
+      addFloatingText(`⚡ ${distanceMeters}M HYPERSONIC!`, canvas.width * 0.5, 110, '#fbbf24', 1.5);
     }
 
     // Continuous Sonic Boom Shockwaves during Turbo
@@ -1379,10 +1499,36 @@ function initArcadeGame() {
     player.y += player.vy;
 
     if (player.y >= player.groundY) {
+      if (player.isDiving) {
+        player.isDiving = false;
+        screenShakeTimer = 10;
+        screenShakeIntensity = 7.5;
+        player.shockwaves.push({
+          x: player.x + 22,
+          y: player.groundY + player.height - 2,
+          radius: 8,
+          maxRadius: 75,
+          color: '#f59e0b',
+          alpha: 1.0
+        });
+        for (let i = 0; i < 18; i++) {
+          player.particles.push({
+            x: player.x + Math.random() * player.width,
+            y: player.groundY + player.height - 2,
+            vx: (Math.random() - 0.5) * 12,
+            vy: -Math.random() * 5 - 1,
+            size: Math.random() * 5 + 2,
+            color: '#fbbf24',
+            life: 24,
+            maxLife: 24
+          });
+        }
+      }
       player.y = player.groundY;
       player.vy = 0;
       player.isGrounded = true;
       player.isJumping = false;
+      player.hasDoubleJumped = false;
 
       // Check buffered jump
       if (jumpBufferTimer > 0) {
@@ -1523,27 +1669,87 @@ function initArcadeGame() {
     /* --------------------------------------------------------------------------
        5. Spawn & Render Obstacles (With Supersonic Vaporization Field)
        -------------------------------------------------------------------------- */
-    // Obstacle Spawning Interval
+    // Obstacle Spawning Interval - Expert Reflex Pace!
     const spawnInterval = isImpossibleMode 
-      ? Math.max(38, Math.floor(115 - currentSpeed * 2.2)) 
-      : Math.max(70, Math.floor(155 - currentSpeed * 4.5));
+      ? Math.max(22, Math.floor(66 - currentSpeed * 1.05)) 
+      : Math.max(48, Math.floor(130 - currentSpeed * 3.0));
 
     if (frameCount % spawnInterval === 0) {
-      const isBarrier = Math.random() > 0.55;
-      obstacles.push({
-        x: canvas.width + 30,
-        y: isBarrier ? 258 : 272,
-        width: isBarrier ? 34 : 28,
-        height: isBarrier ? 50 : 36,
-        type: isBarrier ? 'barrier' : 'hurdle',
-        glowPhase: Math.random() * Math.PI * 2
-      });
+      const rand = Math.random();
+      if (isImpossibleMode) {
+        if (rand > 0.72) {
+          // Double Hurdle pattern! Demands mid-air double jump!
+          obstacles.push({
+            x: canvas.width + 30,
+            y: 272,
+            width: 26,
+            height: 36,
+            type: 'hurdle',
+            glowPhase: Math.random() * Math.PI * 2
+          });
+          obstacles.push({
+            x: canvas.width + 105,
+            y: 272,
+            width: 26,
+            height: 36,
+            type: 'hurdle',
+            glowPhase: Math.random() * Math.PI * 2
+          });
+        } else if (rand > 0.48) {
+          // Flying Hunter Drone oscillating up/down in air
+          obstacles.push({
+            x: canvas.width + 30,
+            y: 205,
+            baseY: 205,
+            width: 38,
+            height: 34,
+            type: 'hunter_drone',
+            sinePhase: Math.random() * Math.PI * 2,
+            glowPhase: Math.random() * Math.PI * 2
+          });
+        } else if (rand > 0.25) {
+          // Suspended High Laser Gate (dodge underneath or fast dive!)
+          obstacles.push({
+            x: canvas.width + 30,
+            y: 195,
+            width: 32,
+            height: 48,
+            type: 'high_gate',
+            glowPhase: Math.random() * Math.PI * 2
+          });
+        } else {
+          // Heavy cyber barrier
+          obstacles.push({
+            x: canvas.width + 30,
+            y: 256,
+            width: 36,
+            height: 52,
+            type: 'barrier',
+            glowPhase: Math.random() * Math.PI * 2
+          });
+        }
+      } else {
+        const isBarrier = rand > 0.55;
+        obstacles.push({
+          x: canvas.width + 30,
+          y: isBarrier ? 258 : 272,
+          width: isBarrier ? 34 : 28,
+          height: isBarrier ? 50 : 36,
+          type: isBarrier ? 'barrier' : 'hurdle',
+          glowPhase: Math.random() * Math.PI * 2
+        });
+      }
     }
 
     for (let i = obstacles.length - 1; i >= 0; i--) {
       const obs = obstacles[i];
       obs.x -= currentSpeed;
       obs.glowPhase += 0.12;
+
+      if (obs.type === 'hunter_drone') {
+        obs.sinePhase += 0.14;
+        obs.y = obs.baseY + Math.sin(obs.sinePhase) * 26;
+      }
 
       renderObstacle(ctx, obs);
 
@@ -1552,11 +1758,11 @@ function initArcadeGame() {
         if (obs.x < player.x + 320 && obs.x > player.x - 50) {
           spawnDebris(obs.x, obs.y, '#ff007f');
           obstacles.splice(i, 1);
-          score += 250 * comboMultiplier;
+          score += 300 * comboMultiplier;
           screenShakeTimer = 14;
           screenShakeIntensity = 8.5;
           playSmashSound();
-          addFloatingText(`⚡ IMPOSSIBLE VAPORIZED +${250 * comboMultiplier}!`, obs.x + 20, obs.y - 14, '#00f0ff', 1.5);
+          addFloatingText(`⚡ IMPOSSIBLE VAPORIZED +${300 * comboMultiplier}!`, obs.x + 20, obs.y - 14, '#00f0ff', 1.5);
           updateScoreHUD();
           continue;
         }
@@ -1583,7 +1789,7 @@ function initArcadeGame() {
         }
       }
 
-      if (obs.x < -60) obstacles.splice(i, 1);
+      if (obs.x < -80) obstacles.splice(i, 1);
     }
 
     /* --------------------------------------------------------------------------
@@ -1631,9 +1837,9 @@ function initArcadeGame() {
       const dist = Math.hypot(pCenter.x - cCenter.x, pCenter.y - cCenter.y);
 
       if (dist < (player.turboTimer > 0 ? 68 : 38)) {
-        // Increment combo
-        comboMultiplier = Math.min(5, comboMultiplier + 1);
-        comboTimer = 200; // 3.3 seconds to keep combo active
+        // Increment combo up to 10x
+        comboMultiplier = Math.min(10, comboMultiplier + 1);
+        comboTimer = 220;
         if (comboMultiplier > maxComboReached) maxComboReached = comboMultiplier;
 
         if (col.type === 'sushi') {
@@ -1991,14 +2197,13 @@ function initArcadeGame() {
   }
 
   /* ==========================================================================
-     Obstacle Renderer (Laser Hurdles & Cyber Barriers)
+     Obstacle Renderer (Laser Hurdles, Hunter Drones, High Gates & Barriers)
      ========================================================================== */
   function renderObstacle(ctx, obs) {
     ctx.save();
     if (obs.type === 'hurdle') {
       // Cyber Laser Hurdle
       const pylonWidth = 6;
-      // Left & Right Tech Pylons
       ctx.fillStyle = '#1e293b';
       ctx.fillRect(obs.x, obs.y, pylonWidth, obs.height);
       ctx.fillRect(obs.x + obs.width - pylonWidth, obs.y, pylonWidth, obs.height);
@@ -2026,6 +2231,83 @@ function initArcadeGame() {
       ctx.beginPath();
       ctx.moveTo(obs.x + pylonWidth, obs.y + obs.height - 8);
       ctx.lineTo(obs.x + obs.width - pylonWidth, obs.y + obs.height - 8);
+      ctx.stroke();
+      ctx.restore();
+    } else if (obs.type === 'hunter_drone') {
+      // 💀 Fast Hovering Hunter Drone with laser eye and rotating plasma blades
+      ctx.save();
+      ctx.shadowBlur = 16;
+      ctx.shadowColor = '#ef4444';
+
+      // Drone Main Body (Aerodynamic Stealth Wing)
+      ctx.fillStyle = '#0f172a';
+      ctx.strokeStyle = '#ef4444';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(obs.x, obs.y + obs.height * 0.5);
+      ctx.lineTo(obs.x + obs.width * 0.7, obs.y);
+      ctx.lineTo(obs.x + obs.width, obs.y + obs.height * 0.5);
+      ctx.lineTo(obs.x + obs.width * 0.7, obs.y + obs.height);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Threat Eye Lens
+      const eyeGrad = ctx.createRadialGradient(
+        obs.x + obs.width * 0.35, obs.y + obs.height * 0.5, 2,
+        obs.x + obs.width * 0.35, obs.y + obs.height * 0.5, 8
+      );
+      eyeGrad.addColorStop(0, '#ffffff');
+      eyeGrad.addColorStop(0.6, '#ef4444');
+      eyeGrad.addColorStop(1, 'rgba(239, 68, 68, 0)');
+      ctx.fillStyle = eyeGrad;
+      ctx.beginPath();
+      ctx.arc(obs.x + obs.width * 0.35, obs.y + obs.height * 0.5, 8, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Spinning Plasma Blades
+      ctx.strokeStyle = 'rgba(245, 158, 11, 0.85)';
+      ctx.lineWidth = 2.5;
+      const bladePhase = frameCount * 0.4;
+      ctx.beginPath();
+      ctx.arc(obs.x + obs.width * 0.75, obs.y - 4, 9, bladePhase, bladePhase + Math.PI);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(obs.x + obs.width * 0.75, obs.y + obs.height + 4, 9, -bladePhase, -bladePhase + Math.PI);
+      ctx.stroke();
+
+      // Sonic Jet Exhaust
+      ctx.fillStyle = '#00f0ff';
+      ctx.fillRect(obs.x + obs.width - 2, obs.y + obs.height * 0.5 - 3, 7 + Math.random() * 8, 6);
+      ctx.restore();
+    } else if (obs.type === 'high_gate') {
+      // ⚡ Suspended High Quantum Gate (Must stay low or dive down!)
+      ctx.save();
+      ctx.shadowBlur = 18;
+      ctx.shadowColor = '#f59e0b';
+
+      // Hanging Emitter Pod
+      ctx.fillStyle = '#1e293b';
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(obs.x, obs.y, obs.width, 16, 4);
+      ctx.fill();
+      ctx.stroke();
+
+      // Danger Warning Emblem
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(obs.x + 4, obs.y + 4, obs.width - 8, 8);
+
+      // Downward Pulsing Heavy Laser Curtain
+      const curtainAlpha = 0.75 + Math.sin(obs.glowPhase * 2) * 0.25;
+      ctx.strokeStyle = `rgba(239, 68, 68, ${curtainAlpha})`;
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(obs.x + 8, obs.y + 16);
+      ctx.lineTo(obs.x + 8, obs.y + obs.height);
+      ctx.moveTo(obs.x + obs.width - 8, obs.y + 16);
+      ctx.lineTo(obs.x + obs.width - 8, obs.y + obs.height);
       ctx.stroke();
       ctx.restore();
     } else {
@@ -2222,11 +2504,19 @@ function initArcadeGame() {
     touchJumpBtn.addEventListener('click', triggerJump);
   }
 
+  if (touchDiveBtn) {
+    touchDiveBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      triggerDive();
+    }, { passive: false });
+    touchDiveBtn.addEventListener('click', triggerDive);
+  }
+
   if (touchPauseBtn) {
     touchPauseBtn.addEventListener('click', togglePause);
   }
 
-  // Keyboard Shortcuts
+  // Keyboard Shortcuts (Space/W/Up: Jump & Double Jump; S/Down: Fast Dive; P: Pause; M: Mode)
   window.addEventListener('keydown', (e) => {
     if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
 
@@ -2241,6 +2531,11 @@ function initArcadeGame() {
       } else {
         triggerJump();
       }
+    } else if (e.code === 'ArrowDown' || e.code === 'KeyS') {
+      e.preventDefault();
+      if (isPlaying) {
+        triggerDive();
+      }
     } else if (e.code === 'KeyP' || e.code === 'Escape') {
       e.preventDefault();
       togglePause();
@@ -2250,16 +2545,26 @@ function initArcadeGame() {
     }
   });
 
-  // Canvas Click / Tap to Jump
+  // Canvas Click / Tap / Swipe to Jump & Fast Dive
+  let touchStartY = 0;
   canvas.addEventListener('mousedown', (e) => {
     if (isPlaying) triggerJump();
   });
   canvas.addEventListener('touchstart', (e) => {
     if (isPlaying) {
-      e.preventDefault();
+      touchStartY = e.touches[0].clientY;
       triggerJump();
     }
-  }, { passive: false });
+  }, { passive: true });
+  canvas.addEventListener('touchmove', (e) => {
+    if (isPlaying && touchStartY) {
+      const deltaY = e.touches[0].clientY - touchStartY;
+      if (deltaY > 30) {
+        triggerDive();
+        touchStartY = 0;
+      }
+    }
+  }, { passive: true });
 }
 
 /* ==========================================================================
